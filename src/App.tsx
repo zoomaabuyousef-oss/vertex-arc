@@ -25,10 +25,18 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
             <Cpu className="text-black w-6 h-6" />
           </div>
@@ -36,10 +44,13 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/70">
-          <a href="#services" className="hover:text-emerald-400 transition-colors">Services</a>
-          <a href="#about" className="hover:text-emerald-400 transition-colors">About</a>
-          <a href="#contact" className="hover:text-emerald-400 transition-colors">Contact</a>
-          <button className="bg-white text-black px-5 py-2 rounded-full hover:bg-emerald-400 transition-all font-semibold cursor-pointer">
+          <button onClick={() => scrollToSection('services')} className="hover:text-emerald-400 transition-colors cursor-pointer">Services</button>
+          <button onClick={() => scrollToSection('stats')} className="hover:text-emerald-400 transition-colors cursor-pointer">About</button>
+          <button onClick={() => scrollToSection('contact')} className="hover:text-emerald-400 transition-colors cursor-pointer">Contact</button>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="bg-white text-black px-5 py-2 rounded-full hover:bg-emerald-400 transition-all font-semibold cursor-pointer"
+          >
             Get Started
           </button>
         </div>
@@ -57,10 +68,15 @@ const Navbar = () => {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-full left-0 right-0 glass border-t border-white/10 p-6 md:hidden flex flex-col gap-4"
           >
-            <a href="#services" className="text-white/70 hover:text-emerald-400" onClick={() => setMobileMenuOpen(false)}>Services</a>
-            <a href="#about" className="text-white/70 hover:text-emerald-400" onClick={() => setMobileMenuOpen(false)}>About</a>
-            <a href="#contact" className="text-white/70 hover:text-emerald-400" onClick={() => setMobileMenuOpen(false)}>Contact</a>
-            <button className="bg-emerald-500 text-black py-3 rounded-xl font-bold mt-2 cursor-pointer">Get Started</button>
+            <button className="text-left text-white/70 hover:text-emerald-400 py-2" onClick={() => scrollToSection('services')}>Services</button>
+            <button className="text-left text-white/70 hover:text-emerald-400 py-2" onClick={() => scrollToSection('stats')}>About</button>
+            <button className="text-left text-white/70 hover:text-emerald-400 py-2" onClick={() => scrollToSection('contact')}>Contact</button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="bg-emerald-500 text-black py-3 rounded-xl font-bold mt-2 cursor-pointer"
+            >
+              Get Started
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -69,6 +85,13 @@ const Navbar = () => {
 };
 
 const Hero = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-emerald-500/10 blur-[120px] rounded-full -z-10" />
@@ -91,10 +114,16 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="w-full sm:w-auto bg-emerald-500 text-black px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 cursor-pointer">
+            <button 
+              onClick={() => scrollToSection('services')}
+              className="w-full sm:w-auto bg-emerald-500 text-black px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 cursor-pointer"
+            >
               Explore Services <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="w-full sm:w-auto glass px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/10 transition-colors cursor-pointer">
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="w-full sm:w-auto glass px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/10 transition-colors cursor-pointer"
+            >
               Book a Demo
             </button>
           </div>
@@ -138,6 +167,13 @@ const Hero = () => {
 };
 
 const ServiceCard = ({ icon: Icon, title, description, features, colorClass }: any) => {
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.div 
       whileHover={{ y: -10 }}
@@ -163,7 +199,10 @@ const ServiceCard = ({ icon: Icon, title, description, features, colorClass }: a
         ))}
       </div>
       
-      <button className="group/btn flex items-center gap-2 font-bold text-emerald-400 hover:text-white transition-colors cursor-pointer">
+      <button 
+        onClick={scrollToContact}
+        className="group/btn flex items-center gap-2 font-bold text-emerald-400 hover:text-white transition-colors cursor-pointer"
+      >
         Learn More <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
       </button>
     </motion.div>
@@ -232,7 +271,7 @@ const Stats = () => {
   ];
 
   return (
-    <section className="py-20 border-y border-white/5">
+    <section id="stats" className="py-20 border-y border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
@@ -248,6 +287,14 @@ const Stats = () => {
 };
 
 const Contact = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+  };
+
   return (
     <section id="contact" className="py-24 relative">
       <div className="absolute bottom-0 right-0 w-full max-w-3xl h-[400px] bg-emerald-500/5 blur-[100px] rounded-full -z-10" />
@@ -282,22 +329,48 @@ const Contact = () => {
             </div>
           </div>
 
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" placeholder="Name" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors" />
-              <input type="email" placeholder="Email" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors" />
-            </div>
-            <select className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors appearance-none text-white/60">
-              <option>Select Service</option>
-              <option>AI Receptionist</option>
-              <option>Ad Campaigns</option>
-              <option>Full Suite</option>
-            </select>
-            <textarea placeholder="Message" rows={4} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
-            <button className="w-full bg-white text-black py-4 rounded-2xl font-bold text-lg hover:bg-emerald-500 transition-all cursor-pointer">
-              Send Message
-            </button>
-          </form>
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              {!submitted ? (
+                <motion.form 
+                  key="form"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="space-y-4" 
+                  onSubmit={handleSubmit}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input required type="text" placeholder="Name" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors" />
+                    <input required type="email" placeholder="Email" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors" />
+                  </div>
+                  <select required className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors appearance-none text-white/60">
+                    <option value="">Select Service</option>
+                    <option value="receptionist">AI Receptionist</option>
+                    <option value="campaigns">Ad Campaigns</option>
+                    <option value="full">Full Suite</option>
+                  </select>
+                  <textarea required placeholder="Message" rows={4} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
+                  <button type="submit" className="w-full bg-white text-black py-4 rounded-2xl font-bold text-lg hover:bg-emerald-500 transition-all cursor-pointer">
+                    Send Message
+                  </button>
+                </motion.form>
+              ) : (
+                <motion.div 
+                  key="success"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-emerald-500/10 border border-emerald-500/20 rounded-[2rem] p-12 text-center"
+                >
+                  <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 className="text-black w-10 h-10" />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-4">Message Sent!</h3>
+                  <p className="text-white/60">Thank you for reaching out. Our team will contact you within 24 hours.</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
