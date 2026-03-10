@@ -36,12 +36,16 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <button 
+          className="flex items-center gap-2 cursor-pointer focus-visible:outline-2 focus-visible:outline-emerald-500 focus-visible:outline-offset-4 rounded-lg" 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Vertex Arc - Back to top"
+        >
           <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
-            <Cpu className="text-black w-6 h-6" />
+            <Cpu className="text-black w-6 h-6" aria-hidden="true" />
           </div>
           <span className="text-2xl font-bold tracking-tighter font-display">VERTEX ARC</span>
-        </div>
+        </button>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/70">
           <button onClick={() => scrollToSection('services')} className="hover:text-emerald-400 transition-colors cursor-pointer">Services</button>
@@ -113,7 +117,7 @@ const Hero = () => {
             Scale Your Reach with <br />
             <span className="text-gradient">Intelligent Systems</span>
           </h1>
-          <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
             Vertex Arc provides cutting-edge AI receptionists and hyper-targeted ad campaigns designed to automate your growth and capture every lead.
           </p>
           
@@ -143,24 +147,24 @@ const Hero = () => {
              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-left space-y-4">
                   <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
-                    <Zap className="text-emerald-400" />
+                    <Zap className="text-emerald-400" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-bold">Instant Response</h3>
-                  <p className="text-white/40 text-sm">Our AI receptionists handle calls 24/7 with human-like precision.</p>
+                  <p className="text-white/60 text-sm">Our AI receptionists handle calls 24/7 with human-like precision.</p>
                 </div>
                 <div className="text-left space-y-4">
                   <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center">
-                    <BarChart3 className="text-cyan-400" />
+                    <BarChart3 className="text-cyan-400" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-bold">Data Driven</h3>
-                  <p className="text-white/40 text-sm">Ad campaigns optimized by neural networks for maximum ROI.</p>
+                  <p className="text-white/60 text-sm">Ad campaigns optimized by neural networks for maximum ROI.</p>
                 </div>
                 <div className="text-left space-y-4">
                   <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
-                    <Globe className="text-purple-400" />
+                    <Globe className="text-purple-400" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-bold">Global Reach</h3>
-                  <p className="text-white/40 text-sm">Deploy multi-language campaigns across all major platforms.</p>
+                  <p className="text-white/60 text-sm">Deploy multi-language campaigns across all major platforms.</p>
                 </div>
              </div>
           </div>
@@ -189,18 +193,18 @@ const ServiceCard = ({ icon: Icon, title, description, features, colorClass }: a
       <div className={`absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-20 -z-10 ${colorClass}`} />
       
       <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 ${colorClass.replace('bg-', 'bg-opacity-20 bg-')}`}>
-        <Icon className="w-8 h-8" />
+        <Icon className="w-8 h-8" aria-hidden="true" />
       </div>
       
       <h3 className="text-3xl font-bold mb-4">{title}</h3>
-      <p className="text-white/50 mb-8 leading-relaxed">
+      <p className="text-white/70 mb-8 leading-relaxed">
         {description}
       </p>
       
       <div className="space-y-3 mb-10 mt-auto">
         {features.map((feature: string, i: number) => (
-          <div key={i} className="flex items-center gap-3 text-sm text-white/80">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+          <div key={i} className="flex items-center gap-3 text-sm text-white/90">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" aria-hidden="true" />
             {feature}
           </div>
         ))}
@@ -223,7 +227,7 @@ const Services = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">Our Core <span className="text-emerald-400">Services</span></h2>
-            <p className="text-white/50 text-lg">
+            <p className="text-white/70 text-lg">
               We combine advanced artificial intelligence with creative marketing strategies to provide a full-stack growth solution for your business.
             </p>
           </div>
@@ -291,7 +295,7 @@ const Stats = () => {
               className="text-center"
             >
               <div className="text-4xl md:text-5xl font-display font-bold text-white mb-2">{stat.value}</div>
-              <div className="text-white/40 text-sm uppercase tracking-widest font-semibold">{stat.label}</div>
+              <div className="text-white/60 text-sm uppercase tracking-widest font-semibold">{stat.label}</div>
             </motion.div>
           ))}
         </div>
@@ -317,26 +321,26 @@ const Contact = () => {
         <div className="glass rounded-[3rem] p-8 md:p-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl md:text-6xl font-display font-bold mb-8">Ready to <br /><span className="text-emerald-400">Automate?</span></h2>
-            <p className="text-white/50 text-lg mb-10">
+            <p className="text-white/70 text-lg mb-10">
               Join hundreds of companies that have transformed their operations with Vertex Arc. Let's build your future together.
             </p>
             
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
-                  <MessageSquare className="text-emerald-400" />
+                  <MessageSquare className="text-emerald-400" aria-hidden="true" />
                 </div>
                 <div>
-                  <div className="text-sm text-white/40 font-semibold uppercase tracking-wider">Email Us</div>
+                  <div className="text-sm text-white/60 font-semibold uppercase tracking-wider">Email Us</div>
                   <div className="text-lg font-bold">123vertex.arc@gmail.com</div>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
-                  <PhoneCall className="text-emerald-400" />
+                  <PhoneCall className="text-emerald-400" aria-hidden="true" />
                 </div>
                 <div>
-                  <div className="text-sm text-white/40 font-semibold uppercase tracking-wider">Call Us</div>
+                  <div className="text-sm text-white/60 font-semibold uppercase tracking-wider">Call Us</div>
                   <div className="text-lg font-bold">050 156 0155</div>
                 </div>
               </div>
@@ -355,16 +359,28 @@ const Contact = () => {
                   onSubmit={handleSubmit}
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input required type="text" placeholder="Name" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors" />
-                    <input required type="email" placeholder="Email" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors" />
+                    <div>
+                      <label htmlFor="name" className="sr-only">Name</label>
+                      <input id="name" required type="text" placeholder="Name" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors text-white placeholder:text-white/40" />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="sr-only">Email</label>
+                      <input id="email" required type="email" placeholder="Email" className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors text-white placeholder:text-white/40" />
+                    </div>
                   </div>
-                  <select required className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors appearance-none text-white/60">
-                    <option value="">Select Service</option>
-                    <option value="receptionist">AI Receptionist</option>
-                    <option value="campaigns">Ad Campaigns</option>
-                    <option value="full">Full Suite</option>
-                  </select>
-                  <textarea required placeholder="Message" rows={4} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
+                  <div>
+                    <label htmlFor="service" className="sr-only">Select Service</label>
+                    <select id="service" required className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors appearance-none text-white">
+                      <option value="" className="bg-[#050505]">Select Service</option>
+                      <option value="receptionist" className="bg-[#050505]">AI Receptionist</option>
+                      <option value="campaigns" className="bg-[#050505]">Ad Campaigns</option>
+                      <option value="full" className="bg-[#050505]">Full Suite</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="sr-only">Message</label>
+                    <textarea id="message" required placeholder="Message" rows={4} className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:outline-none focus:border-emerald-500 transition-colors text-white placeholder:text-white/40"></textarea>
+                  </div>
                   <button type="submit" className="w-full bg-white text-black py-4 rounded-2xl font-bold text-lg hover:bg-emerald-500 transition-all cursor-pointer">
                     Send Message
                   </button>
@@ -403,13 +419,13 @@ const Footer = () => {
             <span className="text-xl font-bold tracking-tighter font-display">VERTEX ARC</span>
           </div>
           
-          <div className="flex gap-8 text-sm text-white/40">
+          <div className="flex gap-8 text-sm text-white/60">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-white transition-colors">Cookies</a>
           </div>
           
-          <div className="text-sm text-white/20">
+          <div className="text-sm text-white/40">
             © 2026 Vertex Arc. All rights reserved.
           </div>
         </div>
